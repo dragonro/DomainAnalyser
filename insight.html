@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Domain Insights</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1173d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              display: ["Inter"],
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 px-4 sm:px-6 lg:px-8 backdrop-blur-sm">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM4 8.5L12 13.5L20 8.5L12 4L4 8.5Z"></path>
+</svg>
+<h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Insights</h1>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium text-primary dark:text-primary" href="#">Reports</a>
+<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined"> menu </span>
+</button>
+<img alt="User avatar" class="h-9 w-9 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrYWV6PYyZEnn2_-7xPqTL1jZeO3UTTrwvPzhxxuA-rJnC4WGj6iETXWY6xwvwSNi-aI6gYR4Xz1QUCk_oc1_lWoUZKG5rELgWSIRbaicA48KDP-LHN80LvrujtFBVazC6qZojGTIJkOLSnuIjvP3uAPlofPjBdb00fSoSgClhQThUhI1Gi2oPfXAZk0192LGHKiFZMvq9P4YJr1MpjXFcw9bxAR3_QqjuDDzq_kIqMHkhq4F-EhqgMfvBAW8F-f0KhapBXTbI4so"/>
+</div>
+</header>
+<main class="flex-1 px-4 py-8 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-7xl">
+<div class="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center mb-8">
+<div>
+<p class="text-xs font-medium text-gray-500 dark:text-gray-400">DNS Report</p>
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white">example.com</h2>
+</div>
+<button class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+<span class="material-symbols-outlined"> download </span>
+              Download Report
+            </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-1 space-y-6">
+<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+<div class="p-6">
+<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Main Domain</h3>
+<div class="space-y-4">
+<div class="flex justify-between">
+<p class="text-sm text-gray-500 dark:text-gray-400">Domain</p>
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">example.com</p>
+</div>
+<div class="flex justify-between">
+<p class="text-sm text-gray-500 dark:text-gray-400">Email Provider</p>
+<div class="flex items-center gap-2">
+<img alt="Google Workspace logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqruvbbvn4Ph1rVwXvhmNgTvg6p6nzDNh_GO8vLgDPMUhgm3MCDrf5VLZBLWrBg-oD0EBZ5Gl7JrNWYiw3g_KAl9-wqQ4i1xqfZioduY05i3twQDdgMvQZy7qWX_1u5y0VLdZpAHHdyF6WDjzp3ZYR-Q9L0oQpxOZSzBdfMayBetSDQUJKD3bZLq8ha-umUG8gfYx-tCOhigHxkmQQQjAyvTRkuA6SDWmBgAfqozVQ1650B5QsPSso38LbrGaI94NL0pdjcbPYlBU"/>
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">Google Workspace</p>
+</div>
+</div>
+<div class="flex justify-between">
+<p class="text-sm text-gray-500 dark:text-gray-400">Productivity</p>
+<div class="flex items-center gap-2">
+<img alt="Google Workspace logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxjINzv3Ugidtg9i0C7I1UozR3q1boCE4s7N6th-LJgOJqq40x6Dcd3wrFxd5bqGMv2wmBlWwpN3Egy6gSt41sbcHA5MhMLlYX3Hte1vagjc5qPhn0QwLlBIJbgvAjkbRNapx_scyO7Ki68QV7bniWSEmzzLRkuRUKidG-oAb53cS-umZuG7IXZss5IJorU_wEk-yDVwzwsCaLil74iNkek4b_tQIlNLsnqSV1dIoNrSWYNoy1W0fdkuCHs9WyQzw0UblVXCJhPQ0"/>
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">Google Workspace</p>
+</div>
+</div>
+<div class="flex justify-between">
+<p class="text-sm text-gray-500 dark:text-gray-400">DNS Records</p>
+<div class="flex flex-wrap gap-1">
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">MX</span>
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">TXT</span>
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">SPF</span>
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">DKIM</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-2">
+<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+<div class="p-6">
+<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Subdomains (3)</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm">
+<thead class="bg-gray-50 dark:bg-gray-900/50">
+<tr>
+<th class="py-3 px-6 text-left font-medium text-gray-600 dark:text-gray-400" scope="col">Subdomain</th>
+<th class="py-3 px-6 text-left font-medium text-gray-600 dark:text-gray-400" scope="col">Email Provider</th>
+<th class="py-3 px-6 text-left font-medium text-gray-600 dark:text-gray-400" scope="col">Productivity Tools</th>
+<th class="py-3 px-6 text-left font-medium text-gray-600 dark:text-gray-400" scope="col">DNS Records</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+<tr>
+<td class="py-4 px-6 font-medium text-gray-900 dark:text-white">mail.example.com</td>
+<td class="py-4 px-6 text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2">
+<img alt="Office 365 logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU3Ks5TpGXVHFsggFJDAUxjyl4PXLR6ztLP-9C5MtvD_6cQkvakJZ9f1T1ovaQImfH3_s4ckmkmPcFPMnwB_v-tLOVoaN4IqH4F2dx7XRC4dyQmRFnSwhAJHtK3ryBtJnA4PuVje9bHPg2JKc7371rjM4uAAcavk2hqTM8EsomP0hVUtYhjUATAVr3BuifzdXn1fKTccX3YfpXXU1ITJP8xfGQxIEHwGYjEcCJoROB7f_kGfHJgx9KHUqwIQVHAN-eTtk_6NhlB6c"/>
+<span>Office 365</span>
+</div>
+</td>
+<td class="py-4 px-6 text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2">
+<img alt="Office 365 logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApUsNJeonb9q3Yfrw96585htotGv841jUAUiNGoqHD2u5wBJHtrTl5va0vyNp3xJOB_GJ0PsIONdkCEO9EiY_gIQpFwePhwUdpDeZtxn2Peu78bsg1kejRI7_HiH3e8KWniQN-nt3_b0_Zyxcc9f1i1LVn9C9-JqMoKU-xExsQSwdquG1a3s3eI1yDH79vV-Kl88bv9rOekCQds-lhLdCCbeDvFM_3nXJKOVytM-uCFEQ7AxASDSYTv36N95TOb-Zu4lX5v_fOAQA"/>
+<span>Office 365</span>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex flex-wrap gap-1">
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">MX</span>
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">TXT</span>
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">SPF</span>
+</div>
+</td>
+</tr>
+<tr>
+<td class="py-4 px-6 font-medium text-gray-900 dark:text-white">app.example.com</td>
+<td class="py-4 px-6 text-gray-600 dark:text-gray-300">Other</td>
+<td class="py-4 px-6 text-gray-600 dark:text-gray-300">Other</td>
+<td class="py-4 px-6">
+<div class="flex flex-wrap gap-1">
+<span class="rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-300">A</span>
+<span class="rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-300">CNAME</span>
+</div>
+</td>
+</tr>
+<tr>
+<td class="py-4 px-6 font-medium text-gray-900 dark:text-white">docs.example.com</td>
+<td class="py-4 px-6 text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2">
+<img alt="Google Workspace logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXIu8ErUIaFVAAy4GnYcRwlBuJFgTDgs64h4aGJN4RmIJUJqDXY4PMj4UPNYdRnrN6akCW-5myXwBwWqBdeA2cM-OS7iKYs73gKHQtTL7LQXYs5mOrT302JEGr1VHTfYmGt9Bshh7nv9NyBoRgGXaSJ44VtJCQehEiNE3SbhVFyGKX3tFhjN7UIN9ciE7fOfXozqtKtbzzb5ICifKg5Vm-ThEkxezBi0tq5pP-AeAM_frHrSbyipLcWghpic-n4Ci7PPSz82zBd3A"/>
+<span>Google Workspace</span>
+</div>
+</td>
+<td class="py-4 px-6 text-gray-600 dark:text-gray-300">
+<div class="flex items-center gap-2">
+<img alt="Google Workspace logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCqp-fvZF7ivFMdl7dPg8jM2F1r5shZGVeFZMd0ByLyaAUnrKLV_RPjzFxfnz6_WI1_a0w7PgtAt3A5wn_-jH7dIHrtQVxc9V3wzHMHU8P-e-79pAd-erwIpBkgJRvghcMbtSKyfHeMjuBOROH_giAZf7zxpDdlGFVmw7Uujyp-n9939WBhTb63d6FvGguu59Ve1MYWGRwZjNOaKUFyvLONjAPGkw6y_6jWkLTxWJvTOy6F1kl3orLyW13xesmoyXF9OFpXjgu33k"/>
+<span>Google Workspace</span>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex flex-wrap gap-1">
+<span class="rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-300">CNAME</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
