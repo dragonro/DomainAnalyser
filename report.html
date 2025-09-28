@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Domain Insights</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Domain Report</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
       tailwind.config = {
         darkMode: "class",
         theme: {
@@ -25,154 +26,204 @@
               DEFAULT: "0.25rem",
               lg: "0.5rem",
               xl: "0.75rem",
-              full: "9999px"
+              full: "9999px",
             },
           },
         },
       };
     </script>
-<style>
+    <style>
       .material-symbols-outlined {
-        font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-<div class="flex min-h-screen flex-col">
-<header class="sticky top-0 z-10 border-b border-gray-200/50 dark:border-gray-700/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-<div class="flex h-16 items-center justify-between">
-<div class="flex items-center gap-4">
-<div class="flex items-center gap-2 text-primary">
-<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5-10-5-10 5z"></path>
-</svg>
-<h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Insights</h1>
-</div>
-<nav class="hidden md:flex items-center gap-6 ml-10">
-<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Dashboard</a>
-<a class="text-sm font-bold text-primary dark:text-primary" href="#">Reports</a>
-<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<button class="rounded-full p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCKFYmvryZ6sEKKUb9Y0ywul28RQnInKkV_80dIl1sMZBPSKST8ATM8drWs0wHHuam-cbU3iuv5oJZwMJSmAI0gf6jjAKseg_dqP9nQ4v8pIv2a91Y3omJzicVZ9UwOPy1ktY335E4Q6KdMgLAc31xeXhmhPnZ8GU4mT9-VKQ6jOHGq3I8dTI6MlG9imInAgYvhtSRhVcQj2dnyRjZ8P7IOWszxd2HGEaN9SOgBgVXkPkQ-49IW3OQijKDYpY58iokM8ToZ8ybn6yU");'></div>
-</div>
-</div>
-</div>
-</header>
-<main class="flex-grow">
-<div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-<div class="flex flex-col gap-8">
-<div class="flex flex-wrap items-center justify-between gap-4">
-<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Reports</h2>
-<button class="inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
-<span class="material-symbols-outlined mr-2">add</span>
-                New Report
+  </head>
+  <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+    <div class="flex min-h-screen flex-col">
+      <header class="sticky top-0 z-10 border-b border-gray-200/50 dark:border-gray-700/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex h-16 items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2 text-primary">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5-10-5-10 5z"></path>
+                </svg>
+                <h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Insights</h1>
+              </div>
+              <nav class="hidden md:flex items-center gap-6 ml-10">
+                <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html">Dashboard</a>
+                <a class="text-sm font-bold text-primary dark:text-primary" href="#">Reports</a>
+                <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
+              </nav>
+            </div>
+            <div class="flex items-center gap-4">
+              <button id="print-report" class="inline-flex items-center gap-2 rounded-full p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800" type="button">
+                <span class="material-symbols-outlined">print</span>
               </button>
-</div>
-<div class="relative">
-<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-<span class="material-symbols-outlined text-gray-400 dark:text-gray-500">search</span>
-</div>
-<input class="w-full rounded-lg border border-gray-200/50 dark:border-gray-700/50 bg-background-light dark:bg-background-dark py-2 pl-10 pr-4 text-sm text-gray-900 dark:text-white focus:border-primary focus:ring-primary" placeholder="Search reports..." type="search"/>
-</div>
-<div class="overflow-x-auto rounded-lg border border-gray-200/50 dark:border-gray-700/50">
-<table class="min-w-full divide-y divide-gray-200/50 dark:divide-gray-700/50">
-<thead class="bg-gray-50 dark:bg-gray-800/20">
-<tr>
-<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400" scope="col">Domain</th>
-<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400" scope="col">Date</th>
-<th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400" scope="col">Status</th>
-<th class="relative px-6 py-3" scope="col">
-<span class="sr-only">Actions</span>
-</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-gray-200/50 dark:divide-gray-700/50 bg-background-light dark:bg-background-dark">
-<tr>
-<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">example.com</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">2024-01-15</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm">
-<span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary dark:bg-primary/20 dark:text-primary">Completed</span>
-</td>
-<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-4">
-<a class="text-primary hover:underline" href="#">View</a>
-<a class="text-primary hover:underline" href="#">Download</a>
-<button class="text-red-500 hover:text-red-700 dark:hover:text-red-400">Delete</button>
-</div>
-</td>
-</tr>
-<tr>
-<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">sub.example.com</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">2024-01-10</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm">
-<span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary dark:bg-primary/20 dark:text-primary">Completed</span>
-</td>
-<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-4">
-<a class="text-primary hover:underline" href="#">View</a>
-<a class="text-primary hover:underline" href="#">Download</a>
-<button class="text-red-500 hover:text-red-700 dark:hover:text-red-400">Delete</button>
-</div>
-</td>
-</tr>
-<tr>
-<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">anotherdomain.net</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">2023-12-20</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm">
-<span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary dark:bg-primary/20 dark:text-primary">Completed</span>
-</td>
-<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-4">
-<a class="text-primary hover:underline" href="#">View</a>
-<a class="text-primary hover:underline" href="#">Download</a>
-<button class="text-red-500 hover:text-red-700 dark:hover:text-red-400">Delete</button>
-</div>
-</td>
-</tr>
-<tr>
-<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">test.anotherdomain.net</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">2023-12-15</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm">
-<span class="inline-flex items-center rounded-full bg-yellow-100/80 px-2.5 py-0.5 text-xs font-medium text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300">In Progress</span>
-</td>
-<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-4">
-<a class="text-primary hover:underline" href="#">View</a>
-<a class="text-primary hover:underline" href="#">Download</a>
-<button class="text-red-500 hover:text-red-700 dark:hover:text-red-400">Delete</button>
-</div>
-</td>
-</tr>
-<tr>
-<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">sample.org</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">2023-11-30</td>
-<td class="whitespace-nowrap px-6 py-4 text-sm">
-<span class="inline-flex items-center rounded-full bg-red-100/80 px-2.5 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900/40 dark:text-red-300">Failed</span>
-</td>
-<td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-<div class="flex items-center justify-end gap-4">
-<a class="text-primary hover:underline" href="#">View</a>
-<a class="text-primary hover:underline" href="#">Download</a>
-<button class="text-red-500 hover:text-red-700 dark:hover:text-red-400">Delete</button>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</main>
-</div>
+              <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold uppercase">DA</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="flex-grow">
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div id="report-alert" class="hidden rounded-lg border border-red-300/40 bg-red-100/60 px-4 py-3 text-sm text-red-900"></div>
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Domain Report</p>
+              <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white" id="report-domain">Loading...</h2>
+              <p class="mt-1 text-sm text-gray-600 dark:text-gray-400" id="report-timestamp"></p>
+            </div>
+            <button id="back-to-insights" class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary/90" type="button">
+              <span class="material-symbols-outlined">arrow_back</span>
+              Back to Insights
+            </button>
+          </div>
 
-</body></html>
+          <section class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <article class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm p-6">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Email & Productivity</h3>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <dt class="text-gray-500 dark:text-gray-400">Email Provider</dt>
+                  <dd class="font-medium text-gray-900 dark:text-gray-100" id="report-email">--</dd>
+                </div>
+                <div class="flex justify-between">
+                  <dt class="text-gray-500 dark:text-gray-400">Productivity Suite</dt>
+                  <dd class="font-medium text-gray-900 dark:text-gray-100" id="report-productivity">--</dd>
+                </div>
+              </dl>
+            </article>
+            <article class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm p-6 lg:col-span-2">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Apex DNS Records</h3>
+              <div class="mt-4 space-y-4" id="report-records">
+                <p class="text-sm text-gray-500 dark:text-gray-400">Loading records...</p>
+              </div>
+            </article>
+          </section>
+
+          <section class="mt-8 rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Subdomain Findings</h3>
+                <span class="text-sm text-gray-500 dark:text-gray-400" id="report-subdomain-count">--</span>
+              </div>
+              <div class="mt-4 overflow-x-auto rounded-lg border border-gray-200/60 dark:border-gray-700/60">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                  <thead class="bg-gray-50 dark:bg-gray-800/40 text-gray-600 dark:text-gray-300 uppercase tracking-wide text-xs">
+                    <tr>
+                      <th class="px-4 py-3 text-left">Subdomain</th>
+                      <th class="px-4 py-3 text-left">Email Provider</th>
+                      <th class="px-4 py-3 text-left">Productivity</th>
+                      <th class="px-4 py-3 text-left">Records</th>
+                    </tr>
+                  </thead>
+                  <tbody id="report-subdomain-table" class="divide-y divide-gray-200 dark:divide-gray-800 bg-background-light dark:bg-background-dark">
+                    <tr>
+                      <td class="px-4 py-4" colspan="4">Loading...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const domain = params.get("domain");
+      const alertBox = document.getElementById("report-alert");
+      const domainHeading = document.getElementById("report-domain");
+      const timestampEl = document.getElementById("report-timestamp");
+      const emailEl = document.getElementById("report-email");
+      const productivityEl = document.getElementById("report-productivity");
+      const recordsEl = document.getElementById("report-records");
+      const subdomainTableEl = document.getElementById("report-subdomain-table");
+      const subdomainCountEl = document.getElementById("report-subdomain-count");
+      const backButton = document.getElementById("back-to-insights");
+      const printButton = document.getElementById("print-report");
+
+      function showAlert(message) {
+        alertBox.textContent = message;
+        alertBox.className = "rounded-lg border border-red-300/40 bg-red-100/60 px-4 py-3 text-sm text-red-900";
+      }
+
+      function renderRecords(records) {
+        if (!records || Object.keys(records).length === 0) {
+          return `<p class=\"text-sm text-gray-500 dark:text-gray-400\">No DNS records available.</p>`;
+        }
+        return Object.entries(records)
+          .map(([type, values]) => {
+            const list = values
+              .map(value => `<li class=\"rounded-lg border border-gray-200 dark:border-gray-700 bg-white/40 dark:bg-gray-800/40 px-3 py-2\">${value}</li>`)
+              .join("\n");
+            return `<div><p class=\"text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400\">${type}</p><ul class=\"mt-2 space-y-2\">${list}</ul></div>`;
+          })
+          .join("\n");
+      }
+
+      function renderSubdomains(subdomains) {
+        if (!subdomains || subdomains.length === 0) {
+          subdomainCountEl.textContent = "0 found";
+          subdomainTableEl.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"4\">No subdomains detected from the current wordlist.</td></tr>`;
+          return;
+        }
+        subdomainCountEl.textContent = `${subdomains.length} found`;
+        subdomainTableEl.innerHTML = subdomains
+          .map(sub => {
+            const records = Object.keys(sub.records)
+              .map(type => `<span class=\"inline-flex items-center rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-700 dark:text-gray-200\">${type}</span>`)
+              .join(" ");
+            return `<tr>
+                <td class=\"px-4 py-4 font-medium text-gray-900 dark:text-white\">${sub.fqdn}</td>
+                <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${sub.providers.email}</td>
+                <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${sub.providers.productivity}</td>
+                <td class=\"px-4 py-4\"><div class=\"flex flex-wrap gap-2\">${records || "--"}</div></td>
+              </tr>`;
+          })
+          .join("\n");
+      }
+
+      async function loadReport() {
+        if (!domain) {
+          showAlert("No domain provided. Return to the insights page and try again.");
+          domainHeading.textContent = "Domain missing";
+          return;
+        }
+
+        domainHeading.textContent = domain;
+        timestampEl.textContent = new Date().toLocaleString();
+
+        try {
+          const response = await fetch(`/api/reports/${encodeURIComponent(domain)}`);
+          if (!response.ok) {
+            const payload = await response.json().catch(() => ({}));
+            showAlert(payload.detail || "Unable to generate report for this domain.");
+            return;
+          }
+
+          const payload = await response.json();
+          emailEl.textContent = payload.providers.email;
+          productivityEl.textContent = payload.providers.productivity;
+          recordsEl.innerHTML = renderRecords(payload.apex_records);
+          renderSubdomains(payload.subdomains);
+        } catch (error) {
+          showAlert("A network error occurred while generating the report.");
+        }
+      }
+
+      backButton.addEventListener("click", () => {
+        if (domain) {
+          window.location.href = `insight.html?domain=${encodeURIComponent(domain)}`;
+        } else {
+          window.location.href = "index.html";
+        }
+      });
+
+      printButton.addEventListener("click", () => window.print());
+
+      loadReport();
+    </script>
+  </body>
+</html>

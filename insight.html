@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Domain Insights</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Domain Insights</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
       tailwind.config = {
         darkMode: "class",
         theme: {
@@ -26,161 +27,210 @@
         },
       };
     </script>
-<style>
+    <style>
       .material-symbols-outlined {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-<div class="flex min-h-screen w-full flex-col">
-<header class="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 px-4 sm:px-6 lg:px-8 backdrop-blur-sm">
-<div class="flex items-center gap-4">
-<div class="flex items-center gap-2">
-<svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM4 8.5L12 13.5L20 8.5L12 4L4 8.5Z"></path>
-</svg>
-<h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Insights</h1>
-</div>
-</div>
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Dashboard</a>
-<a class="text-sm font-medium text-primary dark:text-primary" href="#">Reports</a>
-<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="md:hidden p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
-<span class="material-symbols-outlined"> menu </span>
-</button>
-<img alt="User avatar" class="h-9 w-9 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrYWV6PYyZEnn2_-7xPqTL1jZeO3UTTrwvPzhxxuA-rJnC4WGj6iETXWY6xwvwSNi-aI6gYR4Xz1QUCk_oc1_lWoUZKG5rELgWSIRbaicA48KDP-LHN80LvrujtFBVazC6qZojGTIJkOLSnuIjvP3uAPlofPjBdb00fSoSgClhQThUhI1Gi2oPfXAZk0192LGHKiFZMvq9P4YJr1MpjXFcw9bxAR3_QqjuDDzq_kIqMHkhq4F-EhqgMfvBAW8F-f0KhapBXTbI4so"/>
-</div>
-</header>
-<main class="flex-1 px-4 py-8 sm:px-6 lg:px-8">
-<div class="mx-auto max-w-7xl">
-<div class="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center mb-8">
-<div>
-<p class="text-xs font-medium text-gray-500 dark:text-gray-400">DNS Report</p>
-<h2 class="text-3xl font-bold text-gray-900 dark:text-white">example.com</h2>
-</div>
-<button class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
-<span class="material-symbols-outlined"> download </span>
+  </head>
+  <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+    <div class="flex min-h-screen w-full flex-col">
+      <header class="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 px-4 sm:px-6 lg:px-8 backdrop-blur-sm">
+        <div class="flex items-center gap-4">
+          <a class="flex items-center gap-2" href="/">
+            <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM4 8.5L12 13.5L20 8.5L12 4L4 8.5Z"></path>
+            </svg>
+            <h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Insights</h1>
+          </a>
+        </div>
+        <nav class="hidden md:flex items-center gap-6">
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="index.html">Dashboard</a>
+          <a class="text-sm font-medium text-primary dark:text-primary" href="#">Reports</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <button class="md:hidden p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
+            <span class="material-symbols-outlined"> menu </span>
+          </button>
+          <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold uppercase">DA</div>
+        </div>
+      </header>
+      <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl space-y-8">
+          <div id="insight-alert" class="hidden rounded-lg border border-yellow-300/40 bg-yellow-100/60 px-4 py-3 text-sm text-yellow-900"></div>
+          <div class="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+            <div>
+              <p class="text-xs font-medium text-gray-500 dark:text-gray-400">DNS Report</p>
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white" id="domain-title">Loading...</h2>
+            </div>
+            <button id="download-report" class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" type="button">
+              <span class="material-symbols-outlined"> download </span>
               Download Report
             </button>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-<div class="lg:col-span-1 space-y-6">
-<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
-<div class="p-6">
-<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Main Domain</h3>
-<div class="space-y-4">
-<div class="flex justify-between">
-<p class="text-sm text-gray-500 dark:text-gray-400">Domain</p>
-<p class="text-sm font-medium text-gray-800 dark:text-gray-200">example.com</p>
-</div>
-<div class="flex justify-between">
-<p class="text-sm text-gray-500 dark:text-gray-400">Email Provider</p>
-<div class="flex items-center gap-2">
-<img alt="Google Workspace logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqruvbbvn4Ph1rVwXvhmNgTvg6p6nzDNh_GO8vLgDPMUhgm3MCDrf5VLZBLWrBg-oD0EBZ5Gl7JrNWYiw3g_KAl9-wqQ4i1xqfZioduY05i3twQDdgMvQZy7qWX_1u5y0VLdZpAHHdyF6WDjzp3ZYR-Q9L0oQpxOZSzBdfMayBetSDQUJKD3bZLq8ha-umUG8gfYx-tCOhigHxkmQQQjAyvTRkuA6SDWmBgAfqozVQ1650B5QsPSso38LbrGaI94NL0pdjcbPYlBU"/>
-<p class="text-sm font-medium text-gray-800 dark:text-gray-200">Google Workspace</p>
-</div>
-</div>
-<div class="flex justify-between">
-<p class="text-sm text-gray-500 dark:text-gray-400">Productivity</p>
-<div class="flex items-center gap-2">
-<img alt="Google Workspace logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxjINzv3Ugidtg9i0C7I1UozR3q1boCE4s7N6th-LJgOJqq40x6Dcd3wrFxd5bqGMv2wmBlWwpN3Egy6gSt41sbcHA5MhMLlYX3Hte1vagjc5qPhn0QwLlBIJbgvAjkbRNapx_scyO7Ki68QV7bniWSEmzzLRkuRUKidG-oAb53cS-umZuG7IXZss5IJorU_wEk-yDVwzwsCaLil74iNkek4b_tQIlNLsnqSV1dIoNrSWYNoy1W0fdkuCHs9WyQzw0UblVXCJhPQ0"/>
-<p class="text-sm font-medium text-gray-800 dark:text-gray-200">Google Workspace</p>
-</div>
-</div>
-<div class="flex justify-between">
-<p class="text-sm text-gray-500 dark:text-gray-400">DNS Records</p>
-<div class="flex flex-wrap gap-1">
-<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">MX</span>
-<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">TXT</span>
-<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">SPF</span>
-<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">DKIM</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="lg:col-span-2">
-<div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
-<div class="p-6">
-<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Subdomains (3)</h3>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-sm">
-<thead class="bg-gray-50 dark:bg-gray-900/50">
-<tr>
-<th class="py-3 px-6 text-left font-medium text-gray-600 dark:text-gray-400" scope="col">Subdomain</th>
-<th class="py-3 px-6 text-left font-medium text-gray-600 dark:text-gray-400" scope="col">Email Provider</th>
-<th class="py-3 px-6 text-left font-medium text-gray-600 dark:text-gray-400" scope="col">Productivity Tools</th>
-<th class="py-3 px-6 text-left font-medium text-gray-600 dark:text-gray-400" scope="col">DNS Records</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-gray-200 dark:divide-gray-800">
-<tr>
-<td class="py-4 px-6 font-medium text-gray-900 dark:text-white">mail.example.com</td>
-<td class="py-4 px-6 text-gray-600 dark:text-gray-300">
-<div class="flex items-center gap-2">
-<img alt="Office 365 logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU3Ks5TpGXVHFsggFJDAUxjyl4PXLR6ztLP-9C5MtvD_6cQkvakJZ9f1T1ovaQImfH3_s4ckmkmPcFPMnwB_v-tLOVoaN4IqH4F2dx7XRC4dyQmRFnSwhAJHtK3ryBtJnA4PuVje9bHPg2JKc7371rjM4uAAcavk2hqTM8EsomP0hVUtYhjUATAVr3BuifzdXn1fKTccX3YfpXXU1ITJP8xfGQxIEHwGYjEcCJoROB7f_kGfHJgx9KHUqwIQVHAN-eTtk_6NhlB6c"/>
-<span>Office 365</span>
-</div>
-</td>
-<td class="py-4 px-6 text-gray-600 dark:text-gray-300">
-<div class="flex items-center gap-2">
-<img alt="Office 365 logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApUsNJeonb9q3Yfrw96585htotGv841jUAUiNGoqHD2u5wBJHtrTl5va0vyNp3xJOB_GJ0PsIONdkCEO9EiY_gIQpFwePhwUdpDeZtxn2Peu78bsg1kejRI7_HiH3e8KWniQN-nt3_b0_Zyxcc9f1i1LVn9C9-JqMoKU-xExsQSwdquG1a3s3eI1yDH79vV-Kl88bv9rOekCQds-lhLdCCbeDvFM_3nXJKOVytM-uCFEQ7AxASDSYTv36N95TOb-Zu4lX5v_fOAQA"/>
-<span>Office 365</span>
-</div>
-</td>
-<td class="py-4 px-6">
-<div class="flex flex-wrap gap-1">
-<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">MX</span>
-<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">TXT</span>
-<span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">SPF</span>
-</div>
-</td>
-</tr>
-<tr>
-<td class="py-4 px-6 font-medium text-gray-900 dark:text-white">app.example.com</td>
-<td class="py-4 px-6 text-gray-600 dark:text-gray-300">Other</td>
-<td class="py-4 px-6 text-gray-600 dark:text-gray-300">Other</td>
-<td class="py-4 px-6">
-<div class="flex flex-wrap gap-1">
-<span class="rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-300">A</span>
-<span class="rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-300">CNAME</span>
-</div>
-</td>
-</tr>
-<tr>
-<td class="py-4 px-6 font-medium text-gray-900 dark:text-white">docs.example.com</td>
-<td class="py-4 px-6 text-gray-600 dark:text-gray-300">
-<div class="flex items-center gap-2">
-<img alt="Google Workspace logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXIu8ErUIaFVAAy4GnYcRwlBuJFgTDgs64h4aGJN4RmIJUJqDXY4PMj4UPNYdRnrN6akCW-5myXwBwWqBdeA2cM-OS7iKYs73gKHQtTL7LQXYs5mOrT302JEGr1VHTfYmGt9Bshh7nv9NyBoRgGXaSJ44VtJCQehEiNE3SbhVFyGKX3tFhjN7UIN9ciE7fOfXozqtKtbzzb5ICifKg5Vm-ThEkxezBi0tq5pP-AeAM_frHrSbyipLcWghpic-n4Ci7PPSz82zBd3A"/>
-<span>Google Workspace</span>
-</div>
-</td>
-<td class="py-4 px-6 text-gray-600 dark:text-gray-300">
-<div class="flex items-center gap-2">
-<img alt="Google Workspace logo" class="h-4 w-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCqp-fvZF7ivFMdl7dPg8jM2F1r5shZGVeFZMd0ByLyaAUnrKLV_RPjzFxfnz6_WI1_a0w7PgtAt3A5wn_-jH7dIHrtQVxc9V3wzHMHU8P-e-79pAd-erwIpBkgJRvghcMbtSKyfHeMjuBOROH_giAZf7zxpDdlGFVmw7Uujyp-n9939WBhTb63d6FvGguu59Ve1MYWGRwZjNOaKUFyvLONjAPGkw6y_6jWkLTxWJvTOy6F1kl3orLyW13xesmoyXF9OFpXjgu33k"/>
-<span>Google Workspace</span>
-</div>
-</td>
-<td class="py-4 px-6">
-<div class="flex flex-wrap gap-1">
-<span class="rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-300">CNAME</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
+          </div>
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
+            <section class="space-y-6 lg:col-span-2">
+              <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+                <div class="p-6 space-y-4">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Main Domain</h3>
+                  <div class="flex justify-between">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Domain</p>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200" id="apex-domain">--</p>
+                  </div>
+                  <div class="flex justify-between">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Email Provider</p>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200" id="email-provider">--</p>
+                  </div>
+                  <div class="flex justify-between">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Productivity</p>
+                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200" id="productivity-suite">--</p>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+                <div class="p-6 space-y-4">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Apex DNS Records</h3>
+                  <div class="space-y-3" id="apex-records">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Loading records...</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="lg:col-span-3 space-y-6">
+              <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+                <div class="p-6 space-y-4">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Subdomains</h3>
+                    <span id="subdomain-count" class="text-sm text-gray-500 dark:text-gray-400">--</span>
+                  </div>
+                  <div class="overflow-x-auto rounded-lg border border-gray-200/60 dark:border-gray-700/60">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                      <thead class="bg-gray-50 dark:bg-gray-800/40 text-gray-600 dark:text-gray-300 uppercase tracking-wide text-xs">
+                        <tr>
+                          <th class="px-4 py-3 text-left">Subdomain</th>
+                          <th class="px-4 py-3 text-left">Email Provider</th>
+                          <th class="px-4 py-3 text-left">Productivity</th>
+                          <th class="px-4 py-3 text-left">Records</th>
+                        </tr>
+                      </thead>
+                      <tbody id="subdomain-table" class="divide-y divide-gray-200 dark:divide-gray-800 bg-background-light dark:bg-background-dark">
+                        <tr>
+                          <td class="px-4 py-4" colspan="4">Loading subdomains...</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const domain = params.get("domain");
+      const alertEl = document.getElementById("insight-alert");
+      const domainTitle = document.getElementById("domain-title");
+      const apexDomain = document.getElementById("apex-domain");
+      const emailProvider = document.getElementById("email-provider");
+      const productivitySuite = document.getElementById("productivity-suite");
+      const apexRecordsContainer = document.getElementById("apex-records");
+      const subdomainTable = document.getElementById("subdomain-table");
+      const subdomainCount = document.getElementById("subdomain-count");
+      const downloadButton = document.getElementById("download-report");
 
-</body></html>
+      function showAlert(message, tone = "warning") {
+        const toneClasses = {
+          warning: "border-yellow-300/40 bg-yellow-100/60 text-yellow-900",
+          danger: "border-red-300/40 bg-red-100/60 text-red-900",
+        };
+        alertEl.textContent = message;
+        alertEl.className = `rounded-lg px-4 py-3 text-sm ${toneClasses[tone] || toneClasses.warning}`;
+      }
+
+      function clearAlert() {
+        alertEl.textContent = "";
+        alertEl.className = "hidden";
+      }
+
+      function renderRecordList(records) {
+        if (!records || Object.keys(records).length === 0) {
+          return `<p class="text-sm text-gray-500 dark:text-gray-400">No DNS records were located.</p>`;
+        }
+        return Object.entries(records)
+          .map(([rType, values]) => {
+            const chips = values
+              .map(value => `<span class=\"inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary dark:bg-primary/20\">${value}</span>`)
+              .join(" ");
+            return `<div><p class=\"text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400\">${rType}</p><div class=\"mt-1 flex flex-wrap gap-2\">${chips}</div></div>`;
+          })
+          .join("\n");
+      }
+
+      function renderSubdomains(subdomains) {
+        if (!subdomains || subdomains.length === 0) {
+          subdomainCount.textContent = "0 found";
+          subdomainTable.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"4\">No subdomains matched the current wordlist.</td></tr>`;
+          return;
+        }
+
+        subdomainCount.textContent = `${subdomains.length} found`;
+        subdomainTable.innerHTML = subdomains
+          .map(sub => {
+            const records = Object.keys(sub.records)
+              .map(type => `<span class=\"inline-flex items-center rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-700 dark:text-gray-200\">${type}</span>`)
+              .join(" ");
+            return `<tr>
+                <td class=\"px-4 py-4 font-medium text-gray-900 dark:text-white\">${sub.fqdn}</td>
+                <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${sub.providers.email}</td>
+                <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${sub.providers.productivity}</td>
+                <td class=\"px-4 py-4\"><div class=\"flex flex-wrap gap-2\">${records || "--"}</div></td>
+              </tr>`;
+          })
+          .join("\n");
+      }
+
+      async function loadInsights() {
+        if (!domain) {
+          domainTitle.textContent = "Domain missing";
+          showAlert("No domain was provided. Return to the dashboard and try again.");
+          subdomainTable.innerHTML = "";
+          return;
+        }
+
+        clearAlert();
+        domainTitle.textContent = domain;
+        apexDomain.textContent = domain;
+        downloadButton.addEventListener("click", () => {
+          window.location.href = `report.html?domain=${encodeURIComponent(domain)}`;
+        });
+
+        try {
+          const response = await fetch(`/api/domains/${encodeURIComponent(domain)}?include_subdomains=true`);
+          if (!response.ok) {
+            const errorPayload = await response.json().catch(() => ({}));
+            showAlert(errorPayload.detail || "Domain analysis failed.", "danger");
+            apexRecordsContainer.innerHTML = "";
+            subdomainTable.innerHTML = "";
+            return;
+          }
+
+          const payload = await response.json();
+          apexDomain.textContent = payload.domain;
+          emailProvider.textContent = payload.providers.email;
+          productivitySuite.textContent = payload.providers.productivity;
+          apexRecordsContainer.innerHTML = renderRecordList(payload.apex_records);
+          renderSubdomains(payload.subdomains);
+        } catch (error) {
+          showAlert("A network error occurred while retrieving insights.", "danger");
+          apexRecordsContainer.innerHTML = "";
+          subdomainTable.innerHTML = "";
+        }
+      }
+
+      loadInsights();
+    </script>
+  </body>
+</html>
