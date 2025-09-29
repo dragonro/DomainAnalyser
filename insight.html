@@ -45,7 +45,7 @@
           </a>
         </div>
         <nav class="hidden md:flex items-center gap-6">
-          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Dashboard</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Analyse</a>
           <a class="text-sm font-medium text-primary dark:text-primary" href="#">Reports</a>
           <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
         </nav>
@@ -65,8 +65,8 @@
               <h2 class="text-3xl font-bold text-gray-900 dark:text-white" id="domain-title">Loading...</h2>
             </div>
             <button id="download-report" class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" type="button">
-              <span class="material-symbols-outlined"> download </span>
-              Download Report
+              <span class="material-symbols-outlined"> history </span>
+              Scan History
             </button>
           </div>
           <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
@@ -90,18 +90,18 @@
               </div>
               <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
                 <div class="p-6 space-y-4">
-                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Apex DNS Records</h3>
-                  <div class="space-y-3" id="apex-records">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Loading records...</p>
-                  </div>
-                </div>
-              </div>
-              <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
-                <div class="p-6 space-y-4">
                   <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Hosting / Networks</h3>
                   <ul class="space-y-2 text-sm" id="hosting-networks">
                     <li class="text-gray-500 dark:text-gray-400">Detecting network providers...</li>
                   </ul>
+                </div>
+              </div>
+              <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+                <div class="p-6 space-y-4">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Apex DNS Records</h3>
+                  <div class="space-y-3" id="apex-records">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Loading records...</p>
+                  </div>
                 </div>
               </div>
             </section>

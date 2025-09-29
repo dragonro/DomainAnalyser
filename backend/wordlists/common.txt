@@ -17,3 +17,5 @@ files
 fileserver
 vpn
 intranet
+support
+internal
