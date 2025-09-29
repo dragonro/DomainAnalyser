@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import json
+import os
 import pathlib
 from datetime import datetime
 from typing import List
 
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 
 from . import db
 from .models import (
@@ -46,6 +48,39 @@ async def serve_frontend_page(page: str) -> FileResponse:
     if page not in allowed_pages:
         raise HTTPException(status_code=404, detail="Page not found")
     return FileResponse(_frontend_file(f"{page}.html"))
+
+
+@app.get("/app-config.js", include_in_schema=False)
+async def serve_app_config() -> Response:
+    config = {"publicDomain": os.getenv("PUBLIC_DOMAIN")}
+    config_json = json.dumps(config)
+    script_lines = [
+        "(function() {",
+        f"  const config = {config_json};",
+        '  const rawDomain = (config.publicDomain || "").trim();',
+        '  let apiBase = "";',
+        '  if (rawDomain) {',
+        '    const trimmed = rawDomain.replace(/[/]+$/, "");',
+        '    if (/^https?:\/\//i.test(trimmed)) {',
+        '      apiBase = trimmed;',
+        '    } else {',
+        '      const protocol = window.location.protocol === "https:" ? "https:" : "http:";',
+        '      apiBase = `${protocol}//${trimmed}`;',
+        '    }',
+        '  }',
+        '  config.apiBase = apiBase;',
+        '  window.APP_CONFIG = config;',
+        '  window.appApiUrl = function(path = "") {',
+        '    if (!path) {',
+        '      return apiBase || "";',
+        '    }',
+        '    const normalized = path.startsWith("/") ? path : `/${path}`;',
+        '    return apiBase ? `${apiBase}${normalized}` : normalized;',
+        '  };',
+        '})();',
+    ]
+    script = "\n".join(script_lines)
+    return Response(content=script, media_type="application/javascript")
 
 
 @app.post("/api/lookup", response_model=DomainLookupResponse)

@@ -28,6 +28,7 @@
       },
     }
   </script>
+<script src="/app-config.js"></script>
 <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -93,6 +94,7 @@
   const lookupButton = document.getElementById("lookup-btn");
   const domainInput = document.getElementById("domain-input");
   const messageEl = document.getElementById("lookup-message");
+  const buildApiUrl = window.appApiUrl || (path => (path.startsWith('/') ? path : `/${path}`));
 
   async function performLookup() {
     const domain = domainInput.value.trim();
@@ -106,7 +108,7 @@
     messageEl.className = "mt-2 text-sm text-gray-500";
 
     try {
-      const response = await fetch("/api/lookup", {
+      const response = await fetch(buildApiUrl("/api/lookup"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ domain })

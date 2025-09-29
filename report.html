@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="/app-config.js"></script>
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -185,6 +186,7 @@
       const recentReportsTableEl = document.getElementById("recent-reports-table");
       const backButton = document.getElementById("back-to-insights");
       const printButton = document.getElementById("print-report");
+      const buildApiUrl = window.appApiUrl || (path => (path.startsWith('/') ? path : `/${path}`));
 
       function showAlert(message) {
         alertBox.textContent = message;
@@ -288,7 +290,7 @@
 
       async function loadRecentReports() {
         try {
-          const response = await fetch('/api/reports?limit=50');
+          const response = await fetch(buildApiUrl('/api/reports?limit=50'));
           if (!response.ok) {
             throw new Error('Failed to load reports');
           }
@@ -317,7 +319,7 @@
         timestampEl.textContent = new Date().toLocaleString();
 
         try {
-          const response = await fetch(`/api/reports/${encodeURIComponent(domain)}`);
+          const response = await fetch(buildApiUrl(`/api/reports/${encodeURIComponent(domain)}`));
           if (!response.ok) {
             const payload = await response.json().catch(() => ({}));
             showAlert(payload.detail || "Unable to generate report for this domain.");
