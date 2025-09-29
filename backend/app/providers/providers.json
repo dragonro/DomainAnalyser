@@ -3,19 +3,19 @@
     "ns": ["cloudflare.com"],
     "mx": [],
     "spf": [],
-    "asn": ["cloudflare"]
+    "asn": ["cloudflare", "cdn.cloudflare"]
   },
   "google_workspace": {
     "ns": ["googledomains.com", "google.com"],
     "mx": ["aspmx.l.google.com", "alt[0-9].aspmx.l.google.com", "smtp.googlemail.com"],
     "spf": ["_spf.google.com"],
-    "asn": ["google"]
+    "asn": ["google", "1e100", "googledomains"]
   },
   "microsoft_365": {
     "ns": ["azure-dns.com", "microsoftonline.com"],
     "mx": ["mail.protection.outlook.com"],
     "spf": ["spf.protection.outlook.com"],
-    "asn": ["microsoft", "azure"]
+    "asn": ["microsoft", "azure", "trafficmanager.net"]
   },
   "proofpoint": {
     "ns": [],
@@ -39,12 +39,66 @@
     "ns": ["ovh.net", "ovh.com"],
     "mx": ["mx[0-9]+.ovh.net"],
     "spf": ["ovh.net"],
-    "asn": ["ovh"]
+    "asn": ["ovh", "ovh.net"]
   },
   "godaddy": {
     "ns": ["domaincontrol.com"],
     "mx": ["secureserver.net"],
     "spf": ["secureserver.net"],
     "asn": ["godaddy"]
+  },
+  "amazon_web_services": {
+    "ns": ["awsdns.com", "awsdns.net", "awsdns.org", "awsdns.co.uk"],
+    "mx": [],
+    "spf": [],
+    "asn": ["amazonaws", "awsdns", "cloudfront"]
+  },
+  "akamai": {
+    "ns": ["akamai.net", "akadns.net"],
+    "mx": [],
+    "spf": [],
+    "asn": ["akamai", "akadns"]
+  },
+  "digitalocean": {
+    "ns": ["digitalocean.com"],
+    "mx": [],
+    "spf": [],
+    "asn": ["digitalocean"]
+  },
+  "fastly": {
+    "ns": ["fastlydns.net"],
+    "mx": [],
+    "spf": [],
+    "asn": ["fastly"]
+  },
+  "netlify": {
+    "ns": ["netlify.com"],
+    "mx": [],
+    "spf": [],
+    "asn": ["netlify"]
+  },
+  "heroku": {
+    "ns": ["herokudns.com"],
+    "mx": [],
+    "spf": [],
+    "asn": ["herokuapp", "herokudns"]
+  },
+  "squarespace": {
+    "ns": ["squarespacedns.com"],
+    "mx": [],
+    "spf": [],
+    "asn": ["squarespace"]
+  },
+  "wix": {
+    "ns": ["wixdns.net", "wixdns.com"],
+    "mx": [],
+    "spf": [],
+    "asn": ["wix", "wixdns"]
+  },
+  "shopify": {
+    "ns": ["shopify.com", "myshopify.com"],
+    "mx": [],
+    "spf": [],
+    "asn": ["shopify"]
   }
 }
