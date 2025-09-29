@@ -96,6 +96,14 @@
                   </div>
                 </div>
               </div>
+              <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+                <div class="p-6 space-y-4">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Hosting / Networks</h3>
+                  <ul class="space-y-2 text-sm" id="hosting-networks">
+                    <li class="text-gray-500 dark:text-gray-400">Detecting network providers...</li>
+                  </ul>
+                </div>
+              </div>
             </section>
             <section class="lg:col-span-3 space-y-6">
               <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
@@ -111,12 +119,13 @@
                           <th class="px-4 py-3 text-left">Subdomain</th>
                           <th class="px-4 py-3 text-left">Email Provider</th>
                           <th class="px-4 py-3 text-left">Productivity</th>
+                          <th class="px-4 py-3 text-left">Network / CDN</th>
                           <th class="px-4 py-3 text-left">Records</th>
                         </tr>
                       </thead>
                       <tbody id="subdomain-table" class="divide-y divide-gray-200 dark:divide-gray-800 bg-background-light dark:bg-background-dark">
                         <tr>
-                          <td class="px-4 py-4" colspan="4">Loading subdomains...</td>
+                          <td class="px-4 py-4" colspan="5">Loading subdomains...</td>
                         </tr>
                       </tbody>
                     </table>
@@ -139,6 +148,7 @@
       const apexRecordsContainer = document.getElementById("apex-records");
       const subdomainTable = document.getElementById("subdomain-table");
       const subdomainCount = document.getElementById("subdomain-count");
+      const hostingNetworksContainer = document.getElementById("hosting-networks");
       const downloadButton = document.getElementById("download-report");
 
       function showAlert(message, tone = "warning") {
@@ -169,10 +179,24 @@
           .join("\n");
       }
 
+      function renderNetworkList(networks) {
+        if (!hostingNetworksContainer) {
+          return;
+        }
+        if (!networks || networks.length === 0) {
+          hostingNetworksContainer.innerHTML = `<li class=\"text-gray-500 dark:text-gray-400\">No major network or CDN detected.</li>`;
+          return;
+        }
+
+        hostingNetworksContainer.innerHTML = networks
+          .map(name => `<li class=\"flex items-center gap-2\"><span class=\"inline-flex h-2 w-2 rounded-full bg-primary\"></span><span>${name}</span></li>`)
+          .join("\n");
+      }
+
       function renderSubdomains(subdomains) {
         if (!subdomains || subdomains.length === 0) {
           subdomainCount.textContent = "0 found";
-          subdomainTable.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"4\">No subdomains matched the current wordlist.</td></tr>`;
+          subdomainTable.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"5\">No subdomains matched the current wordlist.</td></tr>`;
           return;
         }
 
@@ -182,10 +206,14 @@
             const records = Object.keys(sub.records)
               .map(type => `<span class=\"inline-flex items-center rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-700 dark:text-gray-200\">${type}</span>`)
               .join(" ");
+            const networks = (sub.networks || [])
+              .map(name => `<span class=\"inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary dark:bg-primary/20 dark:text-primary\">${name}</span>`)
+              .join(" ");
             return `<tr>
                 <td class=\"px-4 py-4 font-medium text-gray-900 dark:text-white\">${sub.fqdn}</td>
                 <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${sub.providers.email}</td>
                 <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${sub.providers.productivity}</td>
+                <td class=\"px-4 py-4\"><div class=\"flex flex-wrap gap-2\">${networks || '--'}</div></td>
                 <td class=\"px-4 py-4\"><div class=\"flex flex-wrap gap-2\">${records || "--"}</div></td>
               </tr>`;
           })
@@ -197,6 +225,7 @@
           domainTitle.textContent = "Domain missing";
           showAlert("No domain was provided. Return to the dashboard and try again.");
           subdomainTable.innerHTML = "";
+          renderNetworkList([]);
           return;
         }
 
@@ -207,13 +236,14 @@
           window.location.href = `report.html?domain=${encodeURIComponent(domain)}`;
         });
 
-        try {
+      try {
           const response = await fetch(`/api/domains/${encodeURIComponent(domain)}?include_subdomains=true`);
           if (!response.ok) {
             const errorPayload = await response.json().catch(() => ({}));
             showAlert(errorPayload.detail || "Domain analysis failed.", "danger");
             apexRecordsContainer.innerHTML = "";
             subdomainTable.innerHTML = "";
+            renderNetworkList([]);
             return;
           }
 
@@ -222,11 +252,13 @@
           emailProvider.textContent = payload.providers.email;
           productivitySuite.textContent = payload.providers.productivity;
           apexRecordsContainer.innerHTML = renderRecordList(payload.apex_records);
+          renderNetworkList(payload.networks);
           renderSubdomains(payload.subdomains);
         } catch (error) {
           showAlert("A network error occurred while retrieving insights.", "danger");
           apexRecordsContainer.innerHTML = "";
           subdomainTable.innerHTML = "";
+          renderNetworkList([]);
         }
       }
 

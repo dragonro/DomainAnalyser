@@ -1,0 +1,50 @@
+{
+  "cloudflare": {
+    "ns": ["cloudflare.com"],
+    "mx": [],
+    "spf": [],
+    "asn": ["cloudflare"]
+  },
+  "google_workspace": {
+    "ns": ["googledomains.com", "google.com"],
+    "mx": ["aspmx.l.google.com", "alt[0-9].aspmx.l.google.com", "smtp.googlemail.com"],
+    "spf": ["_spf.google.com"],
+    "asn": ["google"]
+  },
+  "microsoft_365": {
+    "ns": ["azure-dns.com", "microsoftonline.com"],
+    "mx": ["mail.protection.outlook.com"],
+    "spf": ["spf.protection.outlook.com"],
+    "asn": ["microsoft", "azure"]
+  },
+  "proofpoint": {
+    "ns": [],
+    "mx": ["pphosted.com"],
+    "spf": ["pphosted.com"],
+    "asn": ["proofpoint"]
+  },
+  "infomaniak": {
+    "ns": ["infomaniak.com"],
+    "mx": ["mail.infomaniak.ch", "mx[0-9]+.mail.infomaniak.ch"],
+    "spf": ["_spf.infomaniak.ch"],
+    "asn": ["infomaniak"]
+  },
+  "zoho": {
+    "ns": [],
+    "mx": ["mx.zoho.com", "mx2.zoho.com", "mx3.zoho.com"],
+    "spf": ["zoho.com"],
+    "asn": ["zoho"]
+  },
+  "ovh": {
+    "ns": ["ovh.net", "ovh.com"],
+    "mx": ["mx[0-9]+.ovh.net"],
+    "spf": ["ovh.net"],
+    "asn": ["ovh"]
+  },
+  "godaddy": {
+    "ns": ["domaincontrol.com"],
+    "mx": ["secureserver.net"],
+    "spf": ["secureserver.net"],
+    "asn": ["godaddy"]
+  }
+}

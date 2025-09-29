@@ -80,8 +80,34 @@
             </button>
           </div>
 
-          <section class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <article class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm p-6">
+          <section class="mt-8 rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm">
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Reports</h3>
+                <span class="text-sm text-gray-500 dark:text-gray-400" id="recent-report-count">--</span>
+              </div>
+              <div class="mt-4 overflow-x-auto rounded-lg border border-gray-200/60 dark:border-gray-700/60">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
+                  <thead class="bg-gray-50 dark:bg-gray-800/40 text-gray-600 dark:text-gray-300 uppercase tracking-wide text-xs">
+                    <tr>
+                      <th class="px-4 py-3 text-left">Domain</th>
+                      <th class="px-4 py-3 text-left">Last Checked</th>
+                      <th class="px-4 py-3 text-left">Status</th>
+                      <th class="px-4 py-3 text-left">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recent-reports-table" class="divide-y divide-gray-200 dark:divide-gray-800 bg-background-light dark:bg-background-dark">
+                    <tr>
+                      <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-400" colspan="4">Fetching recent reports...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-4">
+            <article class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm p-6 lg:col-span-1">
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Email & Productivity</h3>
               <dl class="mt-4 space-y-3 text-sm">
                 <div class="flex justify-between">
@@ -93,6 +119,12 @@
                   <dd class="font-medium text-gray-900 dark:text-gray-100" id="report-productivity">--</dd>
                 </div>
               </dl>
+            </article>
+            <article class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm p-6 lg:col-span-1">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Hosting / Networks</h3>
+              <ul class="mt-4 space-y-2 text-sm" id="report-networks">
+                <li class="text-gray-500 dark:text-gray-400">Detecting network providers...</li>
+              </ul>
             </article>
             <article class="rounded-xl border border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark shadow-sm p-6 lg:col-span-2">
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Apex DNS Records</h3>
@@ -115,12 +147,13 @@
                       <th class="px-4 py-3 text-left">Subdomain</th>
                       <th class="px-4 py-3 text-left">Email Provider</th>
                       <th class="px-4 py-3 text-left">Productivity</th>
+                      <th class="px-4 py-3 text-left">Network / CDN</th>
                       <th class="px-4 py-3 text-left">Records</th>
                     </tr>
                   </thead>
                   <tbody id="report-subdomain-table" class="divide-y divide-gray-200 dark:divide-gray-800 bg-background-light dark:bg-background-dark">
                     <tr>
-                      <td class="px-4 py-4" colspan="4">Loading...</td>
+                      <td class="px-4 py-4" colspan="5">Loading...</td>
                     </tr>
                   </tbody>
                 </table>
@@ -141,6 +174,9 @@
       const recordsEl = document.getElementById("report-records");
       const subdomainTableEl = document.getElementById("report-subdomain-table");
       const subdomainCountEl = document.getElementById("report-subdomain-count");
+      const networksEl = document.getElementById("report-networks");
+      const recentReportCountEl = document.getElementById("recent-report-count");
+      const recentReportsTableEl = document.getElementById("recent-reports-table");
       const backButton = document.getElementById("back-to-insights");
       const printButton = document.getElementById("print-report");
 
@@ -163,10 +199,65 @@
           .join("\n");
       }
 
+      function renderRecentReports(reports) {
+        if (!reports || reports.length === 0) {
+          recentReportCountEl.textContent = "0 stored";
+          recentReportsTableEl.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"4\">No reports saved yet. Run a lookup to populate this list.</td></tr>`;
+          return;
+        }
+
+        recentReportCountEl.textContent = `${reports.length} stored`;
+        recentReportsTableEl.innerHTML = reports
+          .map(report => {
+            const statusBadge = report.exists
+              ? `<span class=\"inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary dark:bg-primary/20 dark:text-primary\">Verified</span>`
+              : `<span class=\"inline-flex items-center rounded-full bg-red-100/80 px-2.5 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900/40 dark:text-red-300\">Unavailable</span>`;
+            const lookedUp = new Date(report.looked_up_at).toLocaleString();
+            const domainLink = `report.html?domain=${encodeURIComponent(report.domain)}`;
+            return `<tr>
+                <td class=\"px-4 py-4 font-medium text-gray-900 dark:text-white\">
+                  <a class=\"hover:text-primary dark:hover:text-primary transition-colors\" href=\"${domainLink}\">${report.domain}</a>
+                </td>
+                <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${lookedUp}</td>
+                <td class=\"px-4 py-4\">${statusBadge}</td>
+                <td class=\"px-4 py-4\">
+                  <div class=\"flex items-center gap-4\">
+                    <a class=\"text-primary hover:underline\" href=\"${domainLink}\">View</a>
+                    <button class=\"text-primary hover:underline\" data-domain=\"${report.domain}\">Reload</button>
+                  </div>
+                </td>
+              </tr>`;
+          })
+          .join("\n");
+
+        recentReportsTableEl.querySelectorAll('button[data-domain]').forEach(button => {
+          button.addEventListener('click', event => {
+            const selectedDomain = event.currentTarget.getAttribute('data-domain');
+            if (selectedDomain) {
+              window.location.href = `report.html?domain=${encodeURIComponent(selectedDomain)}`;
+            }
+          });
+        });
+      }
+
+      function renderNetworkPanel(networks) {
+        if (!networksEl) {
+          return;
+        }
+        if (!networks || networks.length === 0) {
+          networksEl.innerHTML = `<li class=\"text-gray-500 dark:text-gray-400\">No major network or CDN detected.</li>`;
+          return;
+        }
+
+        networksEl.innerHTML = networks
+          .map(name => `<li class=\"flex items-center gap-2\"><span class=\"inline-flex h-2 w-2 rounded-full bg-primary\"></span><span>${name}</span></li>`)
+          .join("\n");
+      }
+
       function renderSubdomains(subdomains) {
         if (!subdomains || subdomains.length === 0) {
           subdomainCountEl.textContent = "0 found";
-          subdomainTableEl.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"4\">No subdomains detected from the current wordlist.</td></tr>`;
+          subdomainTableEl.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"5\">No subdomains detected from the current wordlist.</td></tr>`;
           return;
         }
         subdomainCountEl.textContent = `${subdomains.length} found`;
@@ -175,20 +266,44 @@
             const records = Object.keys(sub.records)
               .map(type => `<span class=\"inline-flex items-center rounded-full bg-gray-200 dark:bg-gray-700 px-2 py-0.5 text-xs font-medium text-gray-700 dark:text-gray-200\">${type}</span>`)
               .join(" ");
+            const networks = (sub.networks || [])
+              .map(name => `<span class=\"inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary dark:bg-primary/20 dark:text-primary\">${name}</span>`)
+              .join(" ");
             return `<tr>
                 <td class=\"px-4 py-4 font-medium text-gray-900 dark:text-white\">${sub.fqdn}</td>
                 <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${sub.providers.email}</td>
                 <td class=\"px-4 py-4 text-gray-600 dark:text-gray-300\">${sub.providers.productivity}</td>
+                <td class=\"px-4 py-4\"><div class=\"flex flex-wrap gap-2\">${networks || '--'}</div></td>
                 <td class=\"px-4 py-4\"><div class=\"flex flex-wrap gap-2\">${records || "--"}</div></td>
               </tr>`;
           })
           .join("\n");
       }
 
+      async function loadRecentReports() {
+        try {
+          const response = await fetch('/api/reports?limit=50');
+          if (!response.ok) {
+            throw new Error('Failed to load reports');
+          }
+          const reports = await response.json();
+          renderRecentReports(reports);
+        } catch (error) {
+          recentReportCountEl.textContent = 'Error';
+          recentReportsTableEl.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-red-500\">Unable to load stored reports.</td></tr>`;
+        }
+      }
+
       async function loadReport() {
         if (!domain) {
-          showAlert("No domain provided. Return to the insights page and try again.");
-          domainHeading.textContent = "Domain missing";
+          domainHeading.textContent = "Reports";
+          timestampEl.textContent = "Select a domain from the list below.";
+          emailEl.textContent = "--";
+          productivityEl.textContent = "--";
+          recordsEl.innerHTML = `<p class=\"text-sm text-gray-500 dark:text-gray-400\">Select a saved report to view apex DNS records.</p>`;
+          renderNetworkPanel([]);
+          subdomainCountEl.textContent = "0 found";
+          subdomainTableEl.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"5\">Choose a domain from recent reports to view detailed findings.</td></tr>`;
           return;
         }
 
@@ -200,6 +315,7 @@
           if (!response.ok) {
             const payload = await response.json().catch(() => ({}));
             showAlert(payload.detail || "Unable to generate report for this domain.");
+            renderNetworkPanel([]);
             return;
           }
 
@@ -207,9 +323,11 @@
           emailEl.textContent = payload.providers.email;
           productivityEl.textContent = payload.providers.productivity;
           recordsEl.innerHTML = renderRecords(payload.apex_records);
+          renderNetworkPanel(payload.networks);
           renderSubdomains(payload.subdomains);
         } catch (error) {
           showAlert("A network error occurred while generating the report.");
+          renderNetworkPanel([]);
         }
       }
 
@@ -223,6 +341,7 @@
 
       printButton.addEventListener("click", () => window.print());
 
+      loadRecentReports();
       loadReport();
     </script>
   </body>

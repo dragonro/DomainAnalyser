@@ -29,6 +29,7 @@ class SubdomainInsight(BaseModel):
     fqdn: str
     records: Dict[str, List[str]]
     providers: ProviderBreakdown
+    networks: List[str] = Field(default_factory=list)
 
 
 class DomainAnalysisResponse(BaseModel):
@@ -37,3 +38,15 @@ class DomainAnalysisResponse(BaseModel):
     apex_records: Dict[str, List[str]]
     providers: ProviderBreakdown
     subdomains: List[SubdomainInsight]
+    networks: List[str] = Field(default_factory=list)
+
+
+class StoredReport(BaseModel):
+    id: int
+    domain: str
+    looked_up_at: str
+    exists: bool
+    apex_records: Dict[str, List[str]]
+    providers: ProviderBreakdown
+    subdomains: List[SubdomainInsight]
+    networks: List[str] = Field(default_factory=list)

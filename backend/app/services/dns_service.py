@@ -3,7 +3,7 @@ from __future__ import annotations
 import asyncio
 import contextlib
 import pathlib
-from typing import Dict, Iterable, List
+from typing import Dict, Iterable, List, Set
 
 import dns.exception
 import dns.resolver
@@ -13,6 +13,22 @@ from ..models import DomainAnalysisResponse, ProviderBreakdown, SubdomainInsight
 DNS_TIMEOUT = 3.0
 RECORD_TYPES = ("A", "AAAA", "MX", "TXT", "NS", "CNAME")
 WORDLIST_DEFAULT = pathlib.Path(__file__).resolve().parent.parent / "wordlists" / "common.txt"
+
+NETWORK_PATTERNS: Dict[str, List[str]] = {
+    "Cloudflare": ["cloudflare", "cdn.cloudflare"],
+    "Google": ["google", "googledomains", "1e100"],
+    "Amazon Web Services": ["amazonaws", "awsdns", "cloudfront"],
+    "Microsoft Azure": ["azure", "trafficmanager.net"],
+    "Akamai": ["akamai", "akadns"],
+    "OVH": ["ovh", "ovh.net"],
+    "DigitalOcean": ["digitalocean"],
+    "Fastly": ["fastly"],
+    "Netlify": ["netlify"],
+    "Heroku": ["herokuapp", "herokudns"],
+    "Squarespace": ["squarespace"],
+    "Wix": ["wixdns", "wix"],
+    "Shopify": ["shopify"],
+}
 
 
 def _new_resolver() -> dns.resolver.Resolver:
@@ -97,6 +113,21 @@ def _classify_provider(mx_hosts: Iterable[str], txt_records: Iterable[str]) -> P
     return ProviderBreakdown(email=label, productivity=label, evidence=evidence)
 
 
+def _detect_networks(records: Dict[str, List[str]]) -> List[str]:
+    matches: Set[str] = set()
+    record_values: List[str] = []
+    for values in records.values():
+        record_values.extend(values)
+
+    for value in record_values:
+        lower_value = value.lower()
+        for network, patterns in NETWORK_PATTERNS.items():
+            if any(pattern in lower_value for pattern in patterns):
+                matches.add(network)
+
+    return sorted(matches)
+
+
 async def _enumerate_subdomains(domain: str, wordlist_path: pathlib.Path, max_concurrency: int) -> List[SubdomainInsight]:
     if not wordlist_path.exists():
         return []
@@ -114,7 +145,8 @@ async def _enumerate_subdomains(domain: str, wordlist_path: pathlib.Path, max_co
         if not records:
             return
         providers = _classify_provider(records.get("MX", []), records.get("TXT", []))
-        insights.append(SubdomainInsight(fqdn=fqdn, records=records, providers=providers))
+        networks = _detect_networks(records)
+        insights.append(SubdomainInsight(fqdn=fqdn, records=records, providers=providers, networks=networks))
 
     await asyncio.gather(*(_probe(candidate) for candidate in candidates))
     insights.sort(key=lambda item: item.fqdn)
@@ -136,10 +168,12 @@ async def analyze_domain(
             apex_records={},
             providers=ProviderBreakdown(email="Unknown", productivity="Unknown", evidence={}),
             subdomains=[],
+            networks=[],
         )
 
     apex_records = await gather_dns_records(domain)
     providers = _classify_provider(apex_records.get("MX", []), apex_records.get("TXT", []))
+    networks = _detect_networks(apex_records)
 
     subdomains: List[SubdomainInsight] = []
     if include_subdomains:
@@ -152,4 +186,5 @@ async def analyze_domain(
         apex_records=apex_records,
         providers=providers,
         subdomains=subdomains,
+        networks=networks,
     )
