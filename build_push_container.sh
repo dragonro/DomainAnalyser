@@ -1,27 +1,25 @@
 #!/bin/bash
 
 # -----------------------------
-# push_container.sh
-# Build, tag, and push a Docker image to Docker Hub
+# build_push_container.sh
+# Build, tag, and push a multi-platform Docker image to Docker Hub
 # -----------------------------
 
 # --- CONFIG ---
 IMAGE_NAME="domana"                  # local image name
 DOCKER_USER="adrianbega"             # your Docker Hub username
 DOCKER_REPO="domana"                 # repository name on Docker Hub
-TAG="0.5"                            # change to version if needed // latest
+TAG="0.6"                            # change to version if needed // latest
 
-# --- BUILD IMAGE ---
-echo "[+] Building Docker image..."
-docker build -t ${IMAGE_NAME}:${TAG} .
+# --- ENABLE BUILDX ---
+echo "[+] Enabling Docker Buildx..."
+docker buildx create --use --name multiarch-builder || docker buildx use multiarch-builder
 
-# --- TAG IMAGE FOR DOCKER HUB ---
-echo "[+] Tagging image for Docker Hub..."
-docker tag ${IMAGE_NAME}:${TAG} ${DOCKER_USER}/${DOCKER_REPO}:${TAG}
-
-# --- PUSH TO DOCKER HUB ---
-echo "[+] Pushing image to Docker Hub..."
-docker push ${DOCKER_USER}/${DOCKER_REPO}:${TAG}
+# --- BUILD MULTI-PLATFORM IMAGE ---
+echo "[+] Building multi-platform Docker image..."
+docker buildx build --platform linux/amd64,linux/arm64 \
+  -t ${DOCKER_USER}/${DOCKER_REPO}:${TAG} \
+  --push .
 
 # --- DONE ---
-echo "[✓] Image pushed: https://hub.docker.com/r/${DOCKER_USER}/${DOCKER_REPO}"
+echo "[✓] Multi-platform image pushed: https://hub.docker.com/r/${DOCKER_USER}/${DOCKER_REPO}"

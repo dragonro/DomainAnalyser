@@ -186,7 +186,8 @@
       const recentReportsTableEl = document.getElementById("recent-reports-table");
       const backButton = document.getElementById("back-to-insights");
       const printButton = document.getElementById("print-report");
-      const buildApiUrl = window.appApiUrl || (path => (path.startsWith('/') ? path : `/${path}`));
+      //const buildApiUrl = window.appApiUrl || (path => (path.startsWith('/') ? path : `/${path}`));
+      const buildApiUrl = path => `${window.location.origin}${path.startsWith('/') ? path : `/${path}`}`; 
 
       function showAlert(message) {
         alertBox.textContent = message;

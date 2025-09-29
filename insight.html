@@ -161,7 +161,8 @@
       const subdomainCount = document.getElementById("subdomain-count");
       const hostingNetworksContainer = document.getElementById("hosting-networks");
       const downloadButton = document.getElementById("download-report");
-      const buildApiUrl = window.appApiUrl || (path => (path.startsWith('/') ? path : `/${path}`));
+      //const buildApiUrl = window.appApiUrl || (path => (path.startsWith('/') ? path : `/${path}`));        
+      const buildApiUrl = path => `${window.location.origin}${path.startsWith('/') ? path : `/${path}`}`;
 
       function showAlert(message, tone = "warning") {
         const toneClasses = {

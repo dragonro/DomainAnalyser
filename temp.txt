@@ -2,13 +2,12 @@ version: "3.9"
 
 services:
   app:
-    image: adrianbega/domana:0.4
+    build: .
     container_name: domain-analyser
     ports:
-      - "3456:3000"
+      - "3000:3000"
     volumes:
       - ./backend/data:/app/backend/data
     environment:
       UVICORN_WORKERS: "1"
-      PUBLIC_DOMAIN: "localhost:3000"
     restart: unless-stopped

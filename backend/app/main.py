@@ -52,30 +52,16 @@ async def serve_frontend_page(page: str) -> FileResponse:
 
 @app.get("/app-config.js", include_in_schema=False)
 async def serve_app_config() -> Response:
-    config = {"publicDomain": os.getenv("PUBLIC_DOMAIN")}
-    config_json = json.dumps(config)
     script_lines = [
         "(function() {",
-        f"  const config = {config_json};",
-        '  const rawDomain = (config.publicDomain || "").trim();',
-        '  let apiBase = "";',
-        '  if (rawDomain) {',
-        '    const trimmed = rawDomain.replace(/[/]+$/, "");',
-        '    if (/^https?:\/\//i.test(trimmed)) {',
-        '      apiBase = trimmed;',
-        '    } else {',
-        '      const protocol = window.location.protocol === "https:" ? "https:" : "http:";',
-        '      apiBase = `${protocol}//${trimmed}`;',
-        '    }',
-        '  }',
-        '  config.apiBase = apiBase;',
-        '  window.APP_CONFIG = config;',
+        '  const apiBase = window.location.origin;',
+        '  window.APP_CONFIG = { apiBase };',
         '  window.appApiUrl = function(path = "") {',
         '    if (!path) {',
-        '      return apiBase || "";',
+        '      return apiBase;',
         '    }',
         '    const normalized = path.startsWith("/") ? path : `/${path}`;',
-        '    return apiBase ? `${apiBase}${normalized}` : normalized;',
+        '    return `${apiBase}${normalized}`;',
         '  };',
         '})();',
     ]

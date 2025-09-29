@@ -17,7 +17,7 @@ docker run -d \
   -p 3456:3000 \
   -v $(pwd)/backend/data:/app/backend/data \
   -e UVICORN_WORKERS=1 \
-  -e PUBLIC_DOMAIN="localhost:3000" \  
+  -e PUBLIC_DOMAIN="localhost:3000" \
   --restart unless-stopped \
   adrianbega/domana:${TAG}
 
