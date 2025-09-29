@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import asyncio
 import contextlib
+import json
 import pathlib
-from typing import Dict, Iterable, List, Set
+import re
+from typing import Dict, Iterable, List, Pattern, Set
 
 import dns.exception
 import dns.resolver
@@ -13,22 +15,33 @@ from ..models import DomainAnalysisResponse, ProviderBreakdown, SubdomainInsight
 DNS_TIMEOUT = 3.0
 RECORD_TYPES = ("A", "AAAA", "MX", "TXT", "NS", "CNAME")
 WORDLIST_DEFAULT = pathlib.Path(__file__).resolve().parent.parent / "wordlists" / "common.txt"
+PROVIDERS_FILE = pathlib.Path(__file__).resolve().parent.parent / "providers" / "providers.json"
 
-NETWORK_PATTERNS: Dict[str, List[str]] = {
-    "Cloudflare": ["cloudflare", "cdn.cloudflare"],
-    "Google": ["google", "googledomains", "1e100"],
-    "Amazon Web Services": ["amazonaws", "awsdns", "cloudfront"],
-    "Microsoft Azure": ["azure", "trafficmanager.net"],
-    "Akamai": ["akamai", "akadns"],
-    "OVH": ["ovh", "ovh.net"],
-    "DigitalOcean": ["digitalocean"],
-    "Fastly": ["fastly"],
-    "Netlify": ["netlify"],
-    "Heroku": ["herokuapp", "herokudns"],
-    "Squarespace": ["squarespace"],
-    "Wix": ["wixdns", "wix"],
-    "Shopify": ["shopify"],
-}
+
+def _load_provider_patterns() -> List[dict]:
+    if not PROVIDERS_FILE.exists():
+        return []
+
+    with PROVIDERS_FILE.open("r", encoding="utf-8") as handle:
+        raw: Dict[str, Dict[str, List[str]]] = json.load(handle)
+
+    compiled: List[dict] = []
+    for key, payload in raw.items():
+        compiled.append(
+            {
+                "name": key.replace("_", " ").title(),
+                "patterns": {
+                    "ns": [re.compile(pattern, re.IGNORECASE) for pattern in payload.get("ns", [])],
+                    "mx": [re.compile(pattern, re.IGNORECASE) for pattern in payload.get("mx", [])],
+                    "spf": [re.compile(pattern, re.IGNORECASE) for pattern in payload.get("spf", [])],
+                    "asn": [re.compile(pattern, re.IGNORECASE) for pattern in payload.get("asn", [])],
+                },
+            }
+        )
+    return compiled
+
+
+PROVIDER_PATTERNS: List[dict] = _load_provider_patterns()
 
 
 def _new_resolver() -> dns.resolver.Resolver:
@@ -113,17 +126,43 @@ def _classify_provider(mx_hosts: Iterable[str], txt_records: Iterable[str]) -> P
     return ProviderBreakdown(email=label, productivity=label, evidence=evidence)
 
 
-def _detect_networks(records: Dict[str, List[str]]) -> List[str]:
-    matches: Set[str] = set()
-    record_values: List[str] = []
-    for values in records.values():
-        record_values.extend(values)
+def _match_patterns(values: Iterable[str], patterns: List[Pattern[str]]) -> bool:
+    for value in values:
+        for pattern in patterns:
+            if pattern.search(value):
+                return True
+    return False
 
-    for value in record_values:
-        lower_value = value.lower()
-        for network, patterns in NETWORK_PATTERNS.items():
-            if any(pattern in lower_value for pattern in patterns):
-                matches.add(network)
+
+def _detect_networks(records: Dict[str, List[str]]) -> List[str]:
+    if not PROVIDER_PATTERNS:
+        return []
+
+    matches: Set[str] = set()
+    ns_records = records.get("NS", [])
+    mx_records = records.get("MX", [])
+    txt_records = records.get("TXT", [])
+
+    other_records: List[str] = []
+    for rtype, values in records.items():
+        if rtype not in {"NS", "MX", "TXT"}:
+            other_records.extend(values)
+
+    for provider in PROVIDER_PATTERNS:
+        patterns = provider["patterns"]
+        detected = False
+
+        if patterns.get("ns") and _match_patterns(ns_records, patterns["ns"]):
+            detected = True
+        if not detected and patterns.get("mx") and _match_patterns(mx_records, patterns["mx"]):
+            detected = True
+        if not detected and patterns.get("spf"):
+            detected = _match_patterns(txt_records, patterns["spf"])
+        if not detected and patterns.get("asn"):
+            detected = _match_patterns(other_records or ns_records or mx_records, patterns["asn"])
+
+        if detected:
+            matches.add(provider["name"])
 
     return sorted(matches)
 
