@@ -14,6 +14,7 @@ from ..models import DomainAnalysisResponse, ProviderBreakdown, SubdomainInsight
 
 DNS_TIMEOUT = 3.0
 RECORD_TYPES = ("A", "AAAA", "MX", "TXT", "NS", "CNAME")
+SUBDOMAIN_REQUIRED_RECORD_TYPES = ("A", "AAAA", "CNAME")
 WORDLIST_DEFAULT = pathlib.Path(__file__).resolve().parent.parent / "wordlists" / "common.txt"
 PROVIDERS_FILE = pathlib.Path(__file__).resolve().parent.parent / "providers" / "providers.json"
 

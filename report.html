@@ -51,7 +51,7 @@
                 <h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Insights</h1>
               </div>
               <nav class="hidden md:flex items-center gap-6 ml-10">
-                <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Dashboard</a>
+                <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Analyse</a>
                 <a class="text-sm font-bold text-primary dark:text-primary" href="#">Reports</a>
                 <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
               </nav>
@@ -212,8 +212,8 @@
           return;
         }
 
-        recentReportCountEl.textContent = `${reports.length} stored`;
-        recentReportsTableEl.innerHTML = reports
+        recentReportCountEl.textContent = `${reports.length} stored, last 10 shown`;
+        recentReportsTableEl.innerHTML = reports.slice(0, 10)
           .map(report => {
             const statusBadge = report.exists
               ? `<span class=\"inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary dark:bg-primary/20 dark:text-primary\">Verified</span>`
