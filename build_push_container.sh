@@ -9,7 +9,7 @@
 IMAGE_NAME="domana"                  # local image name
 DOCKER_USER="adrianbega"             # your Docker Hub username
 DOCKER_REPO="domana"                 # repository name on Docker Hub
-TAG="0.4"                                    # change to version if needed // latest
+TAG="0.5"                            # change to version if needed // latest
 
 # --- BUILD IMAGE ---
 echo "[+] Building Docker image..."

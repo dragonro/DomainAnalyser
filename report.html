@@ -41,22 +41,22 @@
   <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
     <div class="flex min-h-screen flex-col">
       <header class="sticky top-0 z-10 border-b border-gray-200/50 dark:border-gray-700/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex h-16 items-center justify-between">
             <div class="flex items-center gap-4">
               <div class="flex items-center gap-2 text-primary">
                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5-10-5-10 5z"></path>
                 </svg>
-                <h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Insights</h1>
+                <h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Analyser</h1>
               </div>
-              <nav class="hidden md:flex items-center gap-6 ml-10">
+            </div>
+            <div class="flex items-center gap-4">
+              <nav class="hidden md:flex items-center gap-6">
                 <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Analyse</a>
                 <a class="text-sm font-bold text-primary dark:text-primary" href="#">Reports</a>
                 <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
               </nav>
-            </div>
-            <div class="flex items-center gap-4">
               <button id="print-report" class="inline-flex items-center gap-2 rounded-full p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800" type="button">
                 <span class="material-symbols-outlined">print</span>
               </button>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Domain Insights</title>
+    <title>Domain Analyser</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -35,25 +35,29 @@
   </head>
   <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
     <div class="flex min-h-screen w-full flex-col">
-      <header class="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-gray-200/80 dark:border-gray-700/80 bg-background-light/80 dark:bg-background-dark/80 px-4 sm:px-6 lg:px-8 backdrop-blur-sm">
-        <div class="flex items-center gap-4">
-          <a class="flex items-center gap-2" href="/">
-            <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM4 8.5L12 13.5L20 8.5L12 4L4 8.5Z"></path>
-            </svg>
-            <h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Insights</h1>
-          </a>
-        </div>
-        <nav class="hidden md:flex items-center gap-6">
-          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Analyse</a>
-          <a class="text-sm font-medium text-primary dark:text-primary" href="#">Reports</a>
-          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
-        </nav>
-        <div class="flex items-center gap-4">
-          <button class="md:hidden p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
-            <span class="material-symbols-outlined"> menu </span>
-          </button>
-          <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold uppercase">DA</div>
+      <header class="border-b border-primary/20 dark:border-primary/30">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <div class="flex items-center gap-4">
+              <a class="flex items-center gap-2" href="/">
+                <svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM4 8.5L12 13.5L20 8.5L12 4L4 8.5Z"></path>
+                </svg>
+                <h1 class="text-xl font-bold text-gray-900 dark:text-white">Domain Analyser</h1>
+              </a>
+            </div>
+            <div class="flex items-center gap-4">
+              <nav class="hidden md:flex items-center gap-6">
+                <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="/">Analyse</a>
+                <a class="text-sm font-medium text-primary dark:text-primary" href="#">Reports</a>
+                <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Settings</a>
+              </nav>
+              <button class="md:hidden p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800">
+                <span class="material-symbols-outlined"> menu </span>
+              </button>
+              <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold uppercase">DA</div>
+            </div>
+          </div>
         </div>
       </header>
       <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8">
@@ -139,7 +143,7 @@
       <footer class="border-t border-gray-200/60 dark:border-gray-700/60">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 dark:text-gray-400">
           <span>Copyright - DualBytes x Possibl.</span>
-          <span class="sm:text-right">Version 0.4</span>
+          <span class="sm:text-right">Version 0.5</span>
         </div>
       </footer>
     </div>
@@ -201,7 +205,7 @@
 
       function renderSubdomains(subdomains) {
         if (!subdomains || subdomains.length === 0) {
-          subdomainCount.textContent = "0 found";
+          subdomainCount.textContent = "0 found (but there may be more)";
           subdomainTable.innerHTML = `<tr><td class=\"px-4 py-4 text-sm text-gray-500 dark:text-gray-400\" colspan=\"5\">No subdomains matched the current wordlist.</td></tr>`;
           return;
         }
